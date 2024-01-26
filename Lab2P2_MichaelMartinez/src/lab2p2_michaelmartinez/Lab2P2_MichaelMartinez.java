@@ -171,7 +171,7 @@ public class Lab2P2_MichaelMartinez {
                         listarRecursos(listaLibros, listaArticulos, listaCursos, listaConferencias, listaGlobal);
                         System.out.print("Ingrese la posicion del recurso: ");
                         int identificador=entrada.nextInt();
-                        if (identificador>0 && identificador<listaGlobal.size()) {
+                        if (identificador>=0 && identificador<listaGlobal.size()) {
                             listaGlobal.remove(identificador);
                         }else{
                             System.out.println("La posicion no existe");
@@ -199,7 +199,7 @@ public class Lab2P2_MichaelMartinez {
                             String genero = entrada.next();
                             System.out.print("Ingrese el nuevo año de publicacion del libro: ");
                             int año = entrada.nextInt();
-                            System.out.print("Ingrese la nueva disponibilidad del libro(Si/No)");
+                            System.out.print("Ingrese la nueva disponibilidad del libro(Si/No): ");
                             String disponibilidad = entrada.next();
                             ((Libros)listaGlobal.get(identificador)).setAutor(autor);
                             ((Libros)listaGlobal.get(identificador)).setTitulo(titulo);
@@ -217,7 +217,7 @@ public class Lab2P2_MichaelMartinez {
                             String tema = entrada.next();
                             System.out.print("Ingrese la nueva fecha de publicacion del articulo (YYYY/MM/DD): ");
                             String fecha = entrada.next();
-                            System.out.print("Ingrese la nueva disponibilidad del libro(Si/No)");
+                            System.out.print("Ingrese la nueva disponibilidad del libro(Si/No): ");
                             String disponibilidad = entrada.next();
                             ((Articulos)listaGlobal.get(identificador)).setAcceso(disponibilidad);
                             ((Articulos)listaGlobal.get(identificador)).setTitulo(titulo);
@@ -247,11 +247,11 @@ public class Lab2P2_MichaelMartinez {
                             String titulo = entrada.next();
                             System.out.print("Ingrese el nuevo nombre del conferencista: ");
                             String conferencista = entrada.next();
-                            System.out.print("Ingrese la nueva fecha de la conferencia (YYYY/MM/DD)");
+                            System.out.print("Ingrese la nueva fecha de la conferencia (YYYY/MM/DD): ");
                             String fecha = entrada.next();
-                            System.out.print("Ingrese la nueva duracion de la conferencia en horas");
+                            System.out.print("Ingrese la nueva duracion de la conferencia en horas: ");
                             String duracion = entrada.next();
-                            System.out.print("Ingrese el nuevo enlace de acceso");
+                            System.out.print("Ingrese el nuevo enlace de acceso: ");
                             String enlace = entrada.next();
                             ((conferencias)listaGlobal.get(identificador)).setConferencista(conferencista);
                             ((conferencias)listaGlobal.get(identificador)).setDuracion(duracion);
