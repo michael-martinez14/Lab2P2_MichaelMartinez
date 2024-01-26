@@ -86,6 +86,7 @@ public class Lab2P2_MichaelMartinez {
             switch (opcionMenu) {
                 case 1:
                     listaGlobal.clear();
+                    System.out.println("----RECURSOS----");
                     listarRecursos(listaLibros, listaArticulos, listaCursos, listaConferencias, listaGlobal);
                     break;
                 case 2:
@@ -146,11 +147,11 @@ public class Lab2P2_MichaelMartinez {
                                 titulo=entrada.next();
                                 System.out.print("Ingrese el nombre del conferencista: ");
                                 String conferencista=entrada.next();
-                                System.out.print("Ingrese la fecha de la conferencia (YYYY/MM/DD)");
+                                System.out.print("Ingrese la fecha de la conferencia (YYYY/MM/DD): ");
                                 fecha=entrada.next();
-                                System.out.print("Ingrese la duracion de la conferencia en horas");
+                                System.out.print("Ingrese la duracion de la conferencia en horas: ");
                                 duracion=entrada.next();
-                                System.out.print("Ingrese el enlace de acceso");
+                                System.out.print("Ingrese el enlace de acceso: ");
                                 String enlace=entrada.next();
                                 conferencias nuevaConferencia= new conferencias(titulo,conferencista,fecha, duracion,enlace);
                                 listaConferencias.add(nuevaConferencia);
@@ -205,6 +206,7 @@ public class Lab2P2_MichaelMartinez {
                             ((Libros)listaGlobal.get(identificador)).setGenero(genero);
                             ((Libros)listaGlobal.get(identificador)).setAño(año);
                             ((Libros)listaGlobal.get(identificador)).setDisponibilidad(disponibilidad);
+                            System.out.println("Libro modificado");
                             
                         }else if(listaGlobal.get(identificador) instanceof Articulos){
                             System.out.print("Ingrese el nuevo titulo del articulo: ");
@@ -222,6 +224,7 @@ public class Lab2P2_MichaelMartinez {
                             ((Articulos)listaGlobal.get(identificador)).setAutor(autor);
                             ((Articulos)listaGlobal.get(identificador)).setFecha(fecha);
                             ((Articulos)listaGlobal.get(identificador)).setTema(tema);
+                            System.out.println("Articulo modificado");
                             
                             
                         }else if(listaGlobal.get(identificador) instanceof Cursos){
@@ -237,6 +240,7 @@ public class Lab2P2_MichaelMartinez {
                             ((Cursos)listaGlobal.get(identificador)).setInstructor(instructor);
                             ((Cursos)listaGlobal.get(identificador)).setPlataforma(plataforma);
                             ((Cursos)listaGlobal.get(identificador)).setTitulo(titulo);
+                            System.out.println("Curso modificado");
                             
                         }else if (listaGlobal.get(identificador) instanceof conferencias){
                             System.out.print("Ingrese el nuevo titulo de la conferencia: ");
@@ -254,6 +258,7 @@ public class Lab2P2_MichaelMartinez {
                             ((conferencias)listaGlobal.get(identificador)).setEnlace(enlace);
                             ((conferencias)listaGlobal.get(identificador)).setFecha(fecha);
                             ((conferencias)listaGlobal.get(identificador)).setTitulo(titulo);
+                            System.out.println("Conferencia modificada");
                         }else{
                             System.out.println("Modulo incorrecto");
                         }
