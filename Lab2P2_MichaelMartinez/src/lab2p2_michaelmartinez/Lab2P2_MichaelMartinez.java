@@ -174,13 +174,52 @@ public class Lab2P2_MichaelMartinez {
                 case 4:
                     if (tipoUsuario.equalsIgnoreCase("Bibliotecario")) {
                         listarRecursos(listaLibros, listaArticulos, listaCursos, listaConferencias, listaGlobal);
-                        System.out.print("Ingrese la posicion del recurso: ");
+                        System.out.print("Ingrese la posicion del recurso a modificar: ");
                         int identificador=entrada.nextInt();
-                        if (identificador>0 && identificador<listaGlobal.size()) {
-                            listaGlobal.remove(identificador);
+                        if (listaGlobal.get(identificador) instanceof Libros) {
+                            System.out.print("Ingrese el nuevo titulo del libro: ");
+                            String titulo = entrada.next();
+                            System.out.print("Ingrese el nuevo autor del libro: ");
+                            String autor = entrada.next();
+                            System.out.print("Ingrese el nuevo genero del libro: ");
+                            String genero = entrada.next();
+                            System.out.print("Ingrese el nuevo año de publicacion del libro: ");
+                            int año = entrada.nextInt();
+                            System.out.print("Ingrese la nueva disponibilidad del libro(Si/No)");
+                            String disponibilidad = entrada.next();
+                            ((Libros)listaGlobal.get(identificador)).setAutor(autor);
+                            ((Libros)listaGlobal.get(identificador)).setTitulo(titulo);
+                            ((Libros)listaGlobal.get(identificador)).setGenero(genero);
+                            ((Libros)listaGlobal.get(identificador)).setAño(año);
+                            ((Libros)listaGlobal.get(identificador)).setDisponibilidad(disponibilidad);
+                            
+                        }else if(listaGlobal.get(identificador) instanceof Articulos){
+                            System.out.print("Ingrese el nuevo titulo del articulo: ");
+                            String titulo = entrada.next();
+                            System.out.print("Ingrese el nuevo autor del articulo: ");
+                            String autor = entrada.next();
+                            System.out.print("Ingrese el nuevo tema del articulo: ");
+                            String tema = entrada.next();
+                            System.out.print("Ingrese la nueva fecha de publicacion del articulo (YYYY/MM/DD): ");
+                            String fecha = entrada.next();
+                            System.out.print("Ingrese la nueva disponibilidad del libro(Si/No)");
+                            String disponibilidad = entrada.next();
+                            ((Articulos)listaGlobal.get(identificador)).setAcceso(disponibilidad);
+                            ((Articulos)listaGlobal.get(identificador)).setTitulo(titulo);
+                            ((Articulos)listaGlobal.get(identificador)).setAutor(autor);
+                            ((Articulos)listaGlobal.get(identificador)).setFecha(fecha);
+                            ((Articulos)listaGlobal.get(identificador)).setTema(tema);
+                            
+                            
+                        }else if(listaGlobal.get(identificador) instanceof Cursos){
+                            
+                        }else if (listaGlobal.get(identificador) instanceof conferencias){
+                            
                         }else{
-                            System.out.println("La posicion no existe");
+                            System.out.println("Modulo incorrecto");
                         }
+                        
+                        
                         
                     }else if(tipoUsuario.equalsIgnoreCase("Profesor")){
                         System.out.println("Los profesores no pueden modificar recursos");
