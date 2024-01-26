@@ -23,6 +23,7 @@ public class Lab2P2_MichaelMartinez {
         ArrayList <Cursos>listaCursos=new ArrayList();
         ArrayList <conferencias>listaConferencias=new ArrayList();
         ArrayList <Usuario>listaUsuarios=new ArrayList();
+        ArrayList listaGlobal=new ArrayList();
         boolean bandera=true;
         int opcionMenu=0;
         //Crear usuarios
@@ -80,18 +81,7 @@ public class Lab2P2_MichaelMartinez {
             opcionMenu=entrada.nextInt();
             switch (opcionMenu) {
                 case 1:
-                    for (int i = 0; i < listaLibros.size(); i++) {
-                        System.out.println(i+" )"+listaLibros.get(i));
-                    }
-                    for (int i = 0; i < listaArticulos.size(); i++) {
-                        System.out.println(i+" )"+listaArticulos.get(i));
-                    }
-                    for (int i = 0; i < listaCursos.size(); i++) {
-                        System.out.println(i+" )"+listaCursos.get(i));
-                    }
-                    for (int i = 0; i < listaConferencias.size(); i++) {
-                        System.out.println(i+" )"+listaConferencias.get(i));
-                    }
+                    listarRecursos(listaLibros, listaArticulos, listaCursos, listaConferencias);
                     break;
                 case 2:
                     if (tipoUsuario.equalsIgnoreCase("Profesor") || tipoUsuario.equalsIgnoreCase("Bibliotecario")) {
@@ -131,10 +121,29 @@ public class Lab2P2_MichaelMartinez {
                                 
                                 break;
                             case 3:
+                                System.out.print("Ingrese el titulo del curso: ");
+                                titulo=entrada.next();
+                                System.out.print("Ingrese el nombre del instructor: ");
+                                String instructor=entrada.next();
+                                System.out.print("Ingrese la duracion en semanas: ");
+                                String duracion=entrada.next();
+                                System.out.print("Ingrese la plataforma de enseñanza: ");
+                                String plataforma=entrada.next();
+                                Cursos nuevoCurso=new Cursos(titulo,instructor,duracion,plataforma);
+                                listaCursos.add(nuevoCurso);
                                 
                                 break;
                             case 4:
-                                
+                                System.out.print("Ingrese el titulo de la conferencia: ");
+                                titulo=entrada.next();
+                                System.out.print("Ingrese el nombre del conferencista: ");
+                                String conferencista=entrada.next();
+                                System.out.print("Ingrese la fecha de la conferencia (YYYY/MM/DD)");
+                                fecha=entrada.next();
+                                System.out.print("Ingrese la duracion de la conferencia en horas");
+                                duracion=entrada.next();
+                                System.out.print("Ingrese el enlace de acceso");
+                                String enlace=entrada.next();
                                 break;
                             default:
                                 System.out.println("Opcion incorrecta");
@@ -145,9 +154,39 @@ public class Lab2P2_MichaelMartinez {
                     
                     break;
                 case 3:
+                    if (tipoUsuario.equalsIgnoreCase("Bibliotecario")) {
+                        listarRecursos(listaLibros, listaArticulos, listaCursos, listaConferencias, listaGlobal);
+                        System.out.print("Ingrese la posicion del recurso: ");
+                        int identificador=entrada.nextInt();
+                        if (identificador>0 && identificador<listaGlobal.size()) {
+                            listaGlobal.remove(identificador);
+                        }else{
+                            System.out.println("La posicion no existe");
+                        }
+                        
+                    }else if(tipoUsuario.equalsIgnoreCase("Profesor")){
+                        System.out.println("Los profesores no pueden eliminar recursos");
+                    }else{
+                        System.out.println("Los estudiantes no pueden eliminar recursos");
+                    }
                     
                     break;
                 case 4:
+                    if (tipoUsuario.equalsIgnoreCase("Bibliotecario")) {
+                        listarRecursos(listaLibros, listaArticulos, listaCursos, listaConferencias, listaGlobal);
+                        System.out.print("Ingrese la posicion del recurso: ");
+                        int identificador=entrada.nextInt();
+                        if (identificador>0 && identificador<listaGlobal.size()) {
+                            listaGlobal.remove(identificador);
+                        }else{
+                            System.out.println("La posicion no existe");
+                        }
+                        
+                    }else if(tipoUsuario.equalsIgnoreCase("Profesor")){
+                        System.out.println("Los profesores no pueden modificar recursos");
+                    }else{
+                        System.out.println("Los estudiantes no pueden modificar recursos");
+                    }
                     
                     break;
                 case 5:
@@ -161,5 +200,29 @@ public class Lab2P2_MichaelMartinez {
         }
         
     }//fin del main
+    
+    public static void listarRecursos(ArrayList <Libros> listaLibros, ArrayList <Articulos> listaArticulos,
+        ArrayList <Cursos> listaCursos, ArrayList <conferencias> listaConferencias,ArrayList listaGlobal  ){
+        
+        for (int i = 0; i < listaLibros.size(); i++) {
+            
+            listaGlobal.add(listaLibros.get(i));
+           
+        }
+        for (int i = 0; i < listaArticulos.size(); i++) {
+            listaGlobal.add(listaArticulos.get(i));
+            
+        }
+        for (int i = 0; i < listaCursos.size(); i++) {
+            listaGlobal.add(listaCursos.get(i));
+        }
+        for (int i = 0; i < listaConferencias.size(); i++) {
+            listaGlobal.add(listaConferencias.get(i));
+        }
+        
+        for (int i = 0; i < listaGlobal.size(); i++) {
+            System.out.println(i+" )"+listaGlobal.get(i));
+        }
+    }
     
 }
