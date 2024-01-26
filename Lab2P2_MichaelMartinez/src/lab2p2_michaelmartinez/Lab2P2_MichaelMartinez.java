@@ -51,27 +51,31 @@ public class Lab2P2_MichaelMartinez {
         listaUsuarios.add(nuevoUsuario3);//agregar bibliotecario
         
         //Inicio de sesion
-        System.out.println("Ingrese su usuario: ");
+        System.out.print("Ingrese su usuario: ");
         String usuarioInicio=entrada.next();
-        System.out.println("Ingrese su contraseña");
+        System.out.print("Ingrese su contraseña: ");
         String contraseñaInicio=entrada.next();
         
         String tipoUsuario="";
         int contador=0;
+        boolean bandera2=true;
         for (int i = 0; i < listaUsuarios.size(); i++) {
             if (usuarioInicio.equalsIgnoreCase(listaUsuarios.get(i).usuario) &&
                     contraseñaInicio.equalsIgnoreCase(listaUsuarios.get(i).contraseña)) {
                 System.out.println("Bienvenido "+ listaUsuarios.get(i).tipoUsuario);
                 tipoUsuario=listaUsuarios.get(i).tipoUsuario;
+                
                 contador++;
                 break;
             }else if(i==listaUsuarios.size()-1 && contador==0){
-                System.out.println("Usuario o contraseña incorrectos");
+                
+                bandera2=false;
             }
         }
         
         //Menu
-        while (bandera) {
+        if (bandera2) {
+            while (bandera) {
             System.out.println("1. Listar recurso");
             System.out.println("2. Crear Recurso");
             System.out.println("3. Eliminar recurso");
@@ -81,6 +85,7 @@ public class Lab2P2_MichaelMartinez {
             opcionMenu=entrada.nextInt();
             switch (opcionMenu) {
                 case 1:
+                    listaGlobal.clear();
                     listarRecursos(listaLibros, listaArticulos, listaCursos, listaConferencias, listaGlobal);
                     break;
                 case 2:
@@ -105,6 +110,7 @@ public class Lab2P2_MichaelMartinez {
                                 String disponibilidad="Sí";
                                 Libros libroNuevo=new Libros(titulo,autor,genero,año,disponibilidad);
                                 listaLibros.add(libroNuevo);
+                                System.out.println("Libro agregado");
                                 break;
                             case 2:
                                 System.out.print("Ingrese el titulo del articulo: ");
@@ -118,6 +124,7 @@ public class Lab2P2_MichaelMartinez {
                                 disponibilidad="Sí";
                                 Articulos articuloNuevo=new Articulos(titulo,autor,tema,fecha,disponibilidad);
                                 listaArticulos.add(articuloNuevo);
+                                System.out.println("Articulo agregado");
                                 
                                 break;
                             case 3:
@@ -131,6 +138,7 @@ public class Lab2P2_MichaelMartinez {
                                 String plataforma=entrada.next();
                                 Cursos nuevoCurso=new Cursos(titulo,instructor,duracion,plataforma);
                                 listaCursos.add(nuevoCurso);
+                                System.out.println("Curso agregado");
                                 
                                 break;
                             case 4:
@@ -144,6 +152,9 @@ public class Lab2P2_MichaelMartinez {
                                 duracion=entrada.next();
                                 System.out.print("Ingrese el enlace de acceso");
                                 String enlace=entrada.next();
+                                conferencias nuevaConferencia= new conferencias(titulo,conferencista,fecha, duracion,enlace);
+                                listaConferencias.add(nuevaConferencia);
+                                System.out.println("Conferencia agregada");
                                 break;
                             default:
                                 System.out.println("Opcion incorrecta");
@@ -155,6 +166,7 @@ public class Lab2P2_MichaelMartinez {
                     break;
                 case 3:
                     if (tipoUsuario.equalsIgnoreCase("Bibliotecario")) {
+                        listaGlobal.clear();
                         listarRecursos(listaLibros, listaArticulos, listaCursos, listaConferencias, listaGlobal);
                         System.out.print("Ingrese la posicion del recurso: ");
                         int identificador=entrada.nextInt();
@@ -173,6 +185,7 @@ public class Lab2P2_MichaelMartinez {
                     break;
                 case 4:
                     if (tipoUsuario.equalsIgnoreCase("Bibliotecario")) {
+                        listaGlobal.clear();
                         listarRecursos(listaLibros, listaArticulos, listaCursos, listaConferencias, listaGlobal);
                         System.out.print("Ingrese la posicion del recurso a modificar: ");
                         int identificador=entrada.nextInt();
@@ -263,6 +276,12 @@ public class Lab2P2_MichaelMartinez {
             }
             
         }
+            
+        }else{
+            System.out.println("Usuario o contraseña incorrectos");
+            
+        }
+        
         
     }//fin del main
     
