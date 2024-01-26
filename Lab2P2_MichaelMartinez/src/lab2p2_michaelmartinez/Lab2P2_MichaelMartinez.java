@@ -85,9 +85,9 @@ public class Lab2P2_MichaelMartinez {
             opcionMenu=entrada.nextInt();
             switch (opcionMenu) {
                 case 1:
-                    listaGlobal.clear();
+                    //listaGlobal.clear();
                     System.out.println("----RECURSOS----");
-                    listarRecursos(listaLibros, listaArticulos, listaCursos, listaConferencias, listaGlobal);
+                    listarRecursos(listaGlobal);
                     break;
                 case 2:
                     if (tipoUsuario.equalsIgnoreCase("Profesor") || tipoUsuario.equalsIgnoreCase("Bibliotecario")) {
@@ -110,7 +110,7 @@ public class Lab2P2_MichaelMartinez {
                                 int año=entrada.nextInt();
                                 String disponibilidad="Sí";
                                 Libros libroNuevo=new Libros(titulo,autor,genero,año,disponibilidad);
-                                listaLibros.add(libroNuevo);
+                                listaGlobal.add(libroNuevo);
                                 System.out.println("Libro agregado");
                                 break;
                             case 2:
@@ -124,7 +124,7 @@ public class Lab2P2_MichaelMartinez {
                                 String fecha=entrada.next();
                                 disponibilidad="Sí";
                                 Articulos articuloNuevo=new Articulos(titulo,autor,tema,fecha,disponibilidad);
-                                listaArticulos.add(articuloNuevo);
+                                listaGlobal.add(articuloNuevo);
                                 System.out.println("Articulo agregado");
                                 
                                 break;
@@ -138,7 +138,7 @@ public class Lab2P2_MichaelMartinez {
                                 System.out.print("Ingrese la plataforma de enseñanza: ");
                                 String plataforma=entrada.next();
                                 Cursos nuevoCurso=new Cursos(titulo,instructor,duracion,plataforma);
-                                listaCursos.add(nuevoCurso);
+                                listaGlobal.add(nuevoCurso);
                                 System.out.println("Curso agregado");
                                 
                                 break;
@@ -154,7 +154,7 @@ public class Lab2P2_MichaelMartinez {
                                 System.out.print("Ingrese el enlace de acceso: ");
                                 String enlace=entrada.next();
                                 conferencias nuevaConferencia= new conferencias(titulo,conferencista,fecha, duracion,enlace);
-                                listaConferencias.add(nuevaConferencia);
+                                listaGlobal.add(nuevaConferencia);
                                 System.out.println("Conferencia agregada");
                                 break;
                             default:
@@ -167,10 +167,11 @@ public class Lab2P2_MichaelMartinez {
                     break;
                 case 3:
                     if (tipoUsuario.equalsIgnoreCase("Bibliotecario")) {
-                        listaGlobal.clear();
-                        listarRecursos(listaLibros, listaArticulos, listaCursos, listaConferencias, listaGlobal);
+                        //listaGlobal.clear();
+                        listarRecursos(listaGlobal);
                         System.out.print("Ingrese la posicion del recurso: ");
                         int identificador=entrada.nextInt();
+                        //System.out.println(identificador);
                         if (identificador>=0 && identificador<listaGlobal.size()) {
                             listaGlobal.remove(identificador);
                         }else{
@@ -186,8 +187,8 @@ public class Lab2P2_MichaelMartinez {
                     break;
                 case 4:
                     if (tipoUsuario.equalsIgnoreCase("Bibliotecario")) {
-                        listaGlobal.clear();
-                        listarRecursos(listaLibros, listaArticulos, listaCursos, listaConferencias, listaGlobal);
+                        //listaGlobal.clear();
+                        listarRecursos(listaGlobal);
                         System.out.print("Ingrese la posicion del recurso a modificar: ");
                         int identificador=entrada.nextInt();
                         if (listaGlobal.get(identificador) instanceof Libros) {
@@ -290,25 +291,7 @@ public class Lab2P2_MichaelMartinez {
         
     }//fin del main
     
-    public static void listarRecursos(ArrayList <Libros> listaLibros, ArrayList <Articulos> listaArticulos,
-        ArrayList <Cursos> listaCursos, ArrayList <conferencias> listaConferencias,ArrayList listaGlobal  ){
-        
-        for (int i = 0; i < listaLibros.size(); i++) {
-            
-            listaGlobal.add(listaLibros.get(i));
-           
-        }
-        for (int i = 0; i < listaArticulos.size(); i++) {
-            listaGlobal.add(listaArticulos.get(i));
-            
-        }
-        for (int i = 0; i < listaCursos.size(); i++) {
-            listaGlobal.add(listaCursos.get(i));
-        }
-        for (int i = 0; i < listaConferencias.size(); i++) {
-            listaGlobal.add(listaConferencias.get(i));
-        }
-        
+    public static void listarRecursos(ArrayList listaGlobal  ){
         for (int i = 0; i < listaGlobal.size(); i++) {
             System.out.println(i+" )"+listaGlobal.get(i));
         }
