@@ -81,7 +81,7 @@ public class Lab2P2_MichaelMartinez {
             opcionMenu=entrada.nextInt();
             switch (opcionMenu) {
                 case 1:
-                    listarRecursos(listaLibros, listaArticulos, listaCursos, listaConferencias);
+                    listarRecursos(listaLibros, listaArticulos, listaCursos, listaConferencias, listaGlobal);
                     break;
                 case 2:
                     if (tipoUsuario.equalsIgnoreCase("Profesor") || tipoUsuario.equalsIgnoreCase("Bibliotecario")) {
@@ -212,9 +212,35 @@ public class Lab2P2_MichaelMartinez {
                             
                             
                         }else if(listaGlobal.get(identificador) instanceof Cursos){
+                            System.out.print("Ingrese el nuevo titulo del curso: ");
+                            String titulo = entrada.next();
+                            System.out.print("Ingrese el nuevo nombre del instructor: ");
+                            String instructor = entrada.next();
+                            System.out.print("Ingrese la nueva duracion en semanas: ");
+                            String duracion = entrada.next();
+                            System.out.print("Ingrese la nueva plataforma de enseñanza: ");
+                            String plataforma = entrada.next();
+                            ((Cursos)listaGlobal.get(identificador)).setDuracion(duracion);
+                            ((Cursos)listaGlobal.get(identificador)).setInstructor(instructor);
+                            ((Cursos)listaGlobal.get(identificador)).setPlataforma(plataforma);
+                            ((Cursos)listaGlobal.get(identificador)).setTitulo(titulo);
                             
                         }else if (listaGlobal.get(identificador) instanceof conferencias){
-                            
+                            System.out.print("Ingrese el nuevo titulo de la conferencia: ");
+                            String titulo = entrada.next();
+                            System.out.print("Ingrese el nuevo nombre del conferencista: ");
+                            String conferencista = entrada.next();
+                            System.out.print("Ingrese la nueva fecha de la conferencia (YYYY/MM/DD)");
+                            String fecha = entrada.next();
+                            System.out.print("Ingrese la nueva duracion de la conferencia en horas");
+                            String duracion = entrada.next();
+                            System.out.print("Ingrese el nuevo enlace de acceso");
+                            String enlace = entrada.next();
+                            ((conferencias)listaGlobal.get(identificador)).setConferencista(conferencista);
+                            ((conferencias)listaGlobal.get(identificador)).setDuracion(duracion);
+                            ((conferencias)listaGlobal.get(identificador)).setEnlace(enlace);
+                            ((conferencias)listaGlobal.get(identificador)).setFecha(fecha);
+                            ((conferencias)listaGlobal.get(identificador)).setTitulo(titulo);
                         }else{
                             System.out.println("Modulo incorrecto");
                         }
